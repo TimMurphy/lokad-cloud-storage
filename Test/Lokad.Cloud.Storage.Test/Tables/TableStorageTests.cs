@@ -578,7 +578,7 @@ Time:2010-01-15T12:37:25.1611631Z</message>
             CollectionAssert.AreNotEqual(newETags, oldETags);
         }
 
-        [Test, ExpectedException(typeof(DataServiceRequestException))]
+        [Test]
         public void UpdateOnRemotelyModifiedEntityShouldFailIfNotForced()
         {
             var partition = Guid.NewGuid().ToString("N");
@@ -590,7 +590,7 @@ Time:2010-01-15T12:37:25.1611631Z</message>
             entity.ETag = "abc";
             entity.Value = "def";
 
-            TableStorage.Update(TableName, entities, false);
+            Assert.Throws<DataServiceRequestException>(() => TableStorage.Update(TableName, entities, false));
         }
 
         [Test]
@@ -623,7 +623,7 @@ Time:2010-01-15T12:37:25.1611631Z</message>
             TableStorage.Update(TableName, entities, false);
         }
 
-        [Test, ExpectedException(typeof(DataServiceRequestException))]
+        [Test]
         public void DeleteOnRemotelyModifiedEntityShouldFailIfNotForced()
         {
             var partition = Guid.NewGuid().ToString("N");
@@ -635,7 +635,7 @@ Time:2010-01-15T12:37:25.1611631Z</message>
             entity.ETag = "abc";
             entity.Value = "def";
 
-            TableStorage.Delete(TableName, entities, false);
+            Assert.Throws<DataServiceRequestException>(() =>TableStorage.Delete(TableName, entities, false));
         }
 
         [Test]

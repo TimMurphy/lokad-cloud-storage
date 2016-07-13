@@ -189,22 +189,22 @@ namespace Lokad.Cloud.Storage
         CloudBlobClient BlobClient()
         {
             var blobClient = _storageAccount.CreateCloudBlobClient();
-            blobClient.RetryPolicy = new NoRetry();
+            blobClient.DefaultRequestOptions.RetryPolicy = new NoRetry();
             return blobClient;
         }
 
         CloudTableClient TableClient()
         {
             var tableClient = _storageAccount.CreateCloudTableClient();
-            tableClient.RetryPolicy = new NoRetry();
+            tableClient.DefaultRequestOptions.RetryPolicy = new NoRetry();
             return tableClient;
         }
 
         CloudQueueClient QueueClient()
         {
             var queueClient = _storageAccount.CreateCloudQueueClient();
-            queueClient.RetryPolicy = new NoRetry();
-            queueClient.ServerTimeout = TimeSpan.FromSeconds(300);
+            queueClient.DefaultRequestOptions.RetryPolicy = new NoRetry();
+            queueClient.DefaultRequestOptions.ServerTimeout = TimeSpan.FromSeconds(300);
             return queueClient;
         }
     }

@@ -636,7 +636,7 @@ namespace Lokad.Cloud.Storage.Test.Blobs
             var blobName = CreateNewBlob();
             var result = BlobStorage.TryAcquireLease(ContainerName, blobName);
             Assert.IsTrue(result.IsSuccess);
-            Assert.IsNotNullOrEmpty(result.Value);
+            Assert.That(result.Value, Is.Not.Null.And.Not.Empty);
 
             // cleanup
             BlobStorage.TryReleaseLease(ContainerName, blobName, result.Value);
@@ -648,7 +648,7 @@ namespace Lokad.Cloud.Storage.Test.Blobs
             var blobName = CreateNewBlob();
             var result = BlobStorage.TryAcquireLease(ContainerName, blobName);
             Assert.IsTrue(result.IsSuccess);
-            Assert.IsNotNullOrEmpty(result.Value);
+            Assert.That(result.Value, Is.Not.Null.And.Not.Empty);
             var leaseId = result.Value;
 
             // Second trial should fail

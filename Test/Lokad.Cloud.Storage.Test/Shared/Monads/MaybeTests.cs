@@ -15,9 +15,9 @@ namespace Lokad.Cloud.Storage.Test.Shared.Monads
     {
         // ReSharper disable InconsistentNaming
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void Empty_protects_value()
         {
+            // todo: [ExpectedException(typeof(InvalidOperationException))]
             Assert.IsFalse(Maybe<int>.Empty.HasValue);
             Assert.Fail(Maybe<int>.Empty.Value.ToString());
         }
